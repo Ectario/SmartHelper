@@ -13,5 +13,5 @@ to use:
 
 in tests/basic_mapping_slots:
 
-in one terminal: `anvil`
+in one terminal: `anvil` \
 in an other one: `npx hardhat run scripts/test.js`
