@@ -8,5 +8,6 @@ libs = [
 
 [rpc_endpoints]
 localhost = "http://127.0.0.1:8545"
+sepolia = "https://rpc.sepolia.org"
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
