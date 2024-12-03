@@ -1,14 +1,45 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct SourceUnit {
+    pub nodes: Vec<Node>, 
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(tag = "nodeType", rename_all = "PascalCase")]
+pub enum Node {
+    ContractDefinition {
+        name: String,   
+        nodes: Vec<Node>,
+    },
+    VariableDeclaration {
+        name: String,
+        #[serde(rename = "typeName")]
+        type_name: Option<TypeName>,
+    },
+    #[serde(other)] // must have to ignore other useless things
+    Ignored,
+}
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(tag = "nodeType", rename_all = "PascalCase")]
+pub enum TypeName {
+    ElementaryTypeName {
+        name: String, // basic types (uint, address, etc.)
+    },
+    Mapping {
+        #[serde(rename = "keyType")]
+        key_type: Box<TypeName>, 
+        #[serde(rename = "valueType")]
+        value_type: Box<TypeName>, 
+    },
+    ArrayTypeName {
+        #[serde(rename = "baseType")]
+        base_type: Box<TypeName>, 
+    },
+}
+
+pub fn load_json_file(file_path: &str) -> SourceUnit {
+    let file_content = std::fs::read_to_string(file_path).expect("Failed to read JSON file");
+    serde_json::from_str(&file_content).expect("Failed to parse JSON")
 }

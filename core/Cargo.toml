@@ -1,5 +1,7 @@
 [workspace]
 
 members = [
-	"main", "types",
+	"main", 
+	"types",
+	"parsing",
 ]
