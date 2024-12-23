@@ -1,8 +1,20 @@
 use serde::{Deserialize, Serialize};
+pub use serde_json::to_string_pretty;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SourceUnit {
     pub nodes: Vec<Node>, 
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ArrayLength {
+    value: Option<String>, // The length value as a string
+}
+
+impl ArrayLength {
+    pub fn as_usize(&self) -> Option<usize> {
+        self.value.as_ref().and_then(|v| v.parse::<usize>().ok())
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -36,6 +48,7 @@ pub enum TypeName {
     ArrayTypeName {
         #[serde(rename = "baseType")]
         base_type: Box<TypeName>, 
+        length: Option<ArrayLength>
     },
 }
 
