@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 parsing = { path = "../parsing" }
 types = { path = "../types" }
+sha3 = "0.10"
