@@ -38,7 +38,7 @@ fn main() {
         }
     }
 
-    let json_output = to_string_pretty(&variables_dict).expect("Failed to serialize");
+    let json_output = to_string_pretty(&variables_dict).expect("Failed to serialize"); // this is just the template of the storage layout, of course we need MockData to seee where it will be stored
     println!("{}", json_output);
 }
 
@@ -182,7 +182,8 @@ fn process_variable(
                 // Dynamic array: compute the starting slot for elements
                 let pointer_slot = *current_slot; // Pointer slot for the array
                 let element_start_slot_hash = keccak256(&(pointer_slot as u64).to_be_bytes());
-                let mut intern_current_slot = u64::from_be_bytes(element_start_slot_hash[..8].try_into().unwrap()) as usize;
+                // TODO: PROBLEME CAR CA DEVRAIT ETRE SUR 256 BITS ET PAS 64 LE INTERN_CURRENT_SLOT
+                let mut intern_current_slot = usize::from_be_bytes(element_start_slot_hash[..8].try_into().unwrap()) as usize;
                 let mut intern_current_offset = 0u64 as usize;
 
                 values.insert(

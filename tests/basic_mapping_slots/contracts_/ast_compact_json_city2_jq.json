@@ -2,10 +2,10 @@
   "absolutePath": "/home/ectario/SmartHelper/tests/basic_mapping_slots/contracts_/City2.sol",
   "exportedSymbols": {
     "City2": [
-      29
+      31
     ]
   },
-  "id": 30,
+  "id": 32,
   "license": "UNLICENSED",
   "nodeType": "SourceUnit",
   "nodes": [
@@ -27,9 +27,9 @@
       "contractDependencies": [],
       "contractKind": "contract",
       "fullyImplemented": true,
-      "id": 29,
+      "id": 31,
       "linearizedBaseContracts": [
-        29
+        31
       ],
       "name": "City2",
       "nameLocation": "74:5:0",
@@ -43,7 +43,7 @@
           "name": "nb_user",
           "nameLocation": "101:7:0",
           "nodeType": "VariableDeclaration",
-          "scope": 29,
+          "scope": 31,
           "src": "86:22:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -71,7 +71,7 @@
           "name": "owner_address",
           "nameLocation": "129:13:0",
           "nodeType": "VariableDeclaration",
-          "scope": 29,
+          "scope": 31,
           "src": "114:28:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -100,7 +100,7 @@
           "name": "home_map",
           "nameLocation": "199:8:0",
           "nodeType": "VariableDeclaration",
-          "scope": 29,
+          "scope": 31,
           "src": "148:59:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -175,7 +175,7 @@
           "name": "ids",
           "nameLocation": "230:3:0",
           "nodeType": "VariableDeclaration",
-          "scope": 29,
+          "scope": 31,
           "src": "213:20:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -212,7 +212,7 @@
           "name": "things",
           "nameLocation": "258:6:0",
           "nodeType": "VariableDeclaration",
-          "scope": 29,
+          "scope": 31,
           "src": "239:25:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -258,99 +258,128 @@
           "visibility": "public"
         },
         {
+          "constant": false,
+          "functionSelector": "7f09888c",
+          "id": 20,
+          "mutability": "mutable",
+          "name": "guest_address",
+          "nameLocation": "285:13:0",
+          "nodeType": "VariableDeclaration",
+          "scope": 31,
+          "src": "270:28:0",
+          "stateVariable": true,
+          "storageLocation": "default",
+          "typeDescriptions": {
+            "typeIdentifier": "t_address",
+            "typeString": "address"
+          },
+          "typeName": {
+            "id": 19,
+            "name": "address",
+            "nodeType": "ElementaryTypeName",
+            "src": "270:7:0",
+            "stateMutability": "nonpayable",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            }
+          },
+          "visibility": "public"
+        },
+        {
           "body": {
-            "id": 27,
+            "id": 29,
             "nodeType": "Block",
-            "src": "372:64:0",
+            "src": "406:64:0",
             "statements": [
               {
                 "AST": {
-                  "nativeSrc": "391:39:0",
+                  "nativeSrc": "425:39:0",
                   "nodeType": "YulBlock",
-                  "src": "391:39:0",
+                  "src": "425:39:0",
                   "statements": [
                     {
                       "expression": {
                         "arguments": [
                           {
                             "name": "i",
-                            "nativeSrc": "412:1:0",
+                            "nativeSrc": "446:1:0",
                             "nodeType": "YulIdentifier",
-                            "src": "412:1:0"
+                            "src": "446:1:0"
                           },
                           {
                             "name": "data",
-                            "nativeSrc": "415:4:0",
+                            "nativeSrc": "449:4:0",
                             "nodeType": "YulIdentifier",
-                            "src": "415:4:0"
+                            "src": "449:4:0"
                           }
                         ],
                         "functionName": {
                           "name": "sstore",
-                          "nativeSrc": "405:6:0",
+                          "nativeSrc": "439:6:0",
                           "nodeType": "YulIdentifier",
-                          "src": "405:6:0"
+                          "src": "439:6:0"
                         },
-                        "nativeSrc": "405:15:0",
+                        "nativeSrc": "439:15:0",
                         "nodeType": "YulFunctionCall",
-                        "src": "405:15:0"
+                        "src": "439:15:0"
                       },
-                      "nativeSrc": "405:15:0",
+                      "nativeSrc": "439:15:0",
                       "nodeType": "YulExpressionStatement",
-                      "src": "405:15:0"
+                      "src": "439:15:0"
                     }
                   ]
                 },
                 "evmVersion": "cancun",
                 "externalReferences": [
                   {
-                    "declaration": 23,
+                    "declaration": 25,
                     "isOffset": false,
                     "isSlot": false,
-                    "src": "415:4:0",
+                    "src": "449:4:0",
                     "valueSize": 1
                   },
                   {
-                    "declaration": 21,
+                    "declaration": 23,
                     "isOffset": false,
                     "isSlot": false,
-                    "src": "412:1:0",
+                    "src": "446:1:0",
                     "valueSize": 1
                   }
                 ],
-                "id": 26,
+                "id": 28,
                 "nodeType": "InlineAssembly",
-                "src": "382:48:0"
+                "src": "416:48:0"
               }
             ]
           },
           "documentation": {
-            "id": 19,
+            "id": 21,
             "nodeType": "StructuredDocumentation",
-            "src": "271:49:0",
+            "src": "305:49:0",
             "text": "Write data to the contract's ith storage slot"
           },
           "functionSelector": "d5614ab7",
-          "id": 28,
+          "id": 30,
           "implemented": true,
           "kind": "function",
           "modifiers": [],
           "name": "write",
-          "nameLocation": "334:5:0",
+          "nameLocation": "368:5:0",
           "nodeType": "FunctionDefinition",
           "parameters": {
-            "id": 24,
+            "id": 26,
             "nodeType": "ParameterList",
             "parameters": [
               {
                 "constant": false,
-                "id": 21,
+                "id": 23,
                 "mutability": "mutable",
                 "name": "i",
-                "nameLocation": "348:1:0",
+                "nameLocation": "382:1:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 28,
-                "src": "340:9:0",
+                "scope": 30,
+                "src": "374:9:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -358,10 +387,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 20,
+                  "id": 22,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "340:7:0",
+                  "src": "374:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -371,13 +400,13 @@
               },
               {
                 "constant": false,
-                "id": 23,
+                "id": 25,
                 "mutability": "mutable",
                 "name": "data",
-                "nameLocation": "359:4:0",
+                "nameLocation": "393:4:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 28,
-                "src": "351:12:0",
+                "scope": 30,
+                "src": "385:12:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -385,10 +414,10 @@
                   "typeString": "bytes32"
                 },
                 "typeName": {
-                  "id": 22,
+                  "id": 24,
                   "name": "bytes32",
                   "nodeType": "ElementaryTypeName",
-                  "src": "351:7:0",
+                  "src": "385:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bytes32",
                     "typeString": "bytes32"
@@ -397,26 +426,26 @@
                 "visibility": "internal"
               }
             ],
-            "src": "339:25:0"
+            "src": "373:25:0"
           },
           "returnParameters": {
-            "id": 25,
+            "id": 27,
             "nodeType": "ParameterList",
             "parameters": [],
-            "src": "372:0:0"
+            "src": "406:0:0"
           },
-          "scope": 29,
-          "src": "325:111:0",
+          "scope": 31,
+          "src": "359:111:0",
           "stateMutability": "nonpayable",
           "virtual": false,
           "visibility": "public"
         }
       ],
-      "scope": 30,
-      "src": "65:373:0",
+      "scope": 32,
+      "src": "65:407:0",
       "usedErrors": [],
       "usedEvents": []
     }
   ],
-  "src": "39:400:0"
+  "src": "39:434:0"
 }
