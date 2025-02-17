@@ -147,17 +147,20 @@ fn process_variable(
 
             if let Some(len) = length.as_ref().and_then(|l| l.as_usize()) {
                 let first_item = *current_slot;
+                let mut first_item_cloned = first_item.clone();
                 values.insert(
                     "element".to_string(),
                     process_variable(
                         "element".to_string(),
                         base_type,
                         current_offset,
-                        current_slot,
+                        &mut first_item_cloned,
                         &format!("{}.element", path),
                         &format!("{}.element", raw_path),
                     ),
                 );
+
+                *current_slot += len - 1; // because it starts directly at the first slot (without any metadata unlike dynamic array which saves the length)
 
                 // Fixed array: calculate total size and slots
                 let total_size = element_size * len;
