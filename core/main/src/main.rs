@@ -138,47 +138,57 @@ fn process_variable(
         TypeName::ArrayTypeName { base_type, length } => {
             let element_type = parse_solidity_type(&extract_type_name(base_type));
             let element_size = size_of_type(&element_type);
-
+            
             *current_slot += 1; // Arrays start in a new slot
             *current_offset = 0;
 
             let mut values = VariablesDict::new();
             
-
+            // TODO: maybe for fixed array if there are a BIG number allocated, like 100000, we should just create an offset to update current slot, instead of mocking with internal values ?
             if let Some(len) = length.as_ref().and_then(|l| l.as_usize()) {
-                let first_item = *current_slot;
-                let mut first_item_cloned = first_item.clone();
-                values.insert(
-                    "element".to_string(),
-                    process_variable(
-                        "element".to_string(),
-                        base_type,
-                        current_offset,
-                        &mut first_item_cloned,
-                        &format!("{}.element", path),
-                        &format!("{}.element", raw_path),
-                    ),
-                );
+                let mut slot = *current_slot;
+                let mut offset = 0;
 
-                *current_slot += len - 1; // because it starts directly at the first slot (without any metadata unlike dynamic array which saves the length)
+                let init_path = slot.to_string();
 
-                // Fixed array: calculate total size and slots
-                let total_size = element_size * len;
-                // let slots_used = (total_size + 255) / 256; // Round up to nearest slot
+                for i in 0..len {
+                    if offset + element_size > 32 {
+                        slot += 1;
+                        offset = 0;
+                    }
 
+                    let mut computed_path = format!("Keccak256({}) + {}", init_path, i);
+
+                    values.insert(
+                        format!("element_{}", i),
+                        process_variable(
+                            format!("element_{}", i),
+                            base_type,
+                            &mut offset,
+                            &mut slot,
+                            &computed_path,
+                            &format!("{}.element_{}", raw_path, i),
+                        ),
+                    );
+
+                    offset += element_size;
+                }
+
+                // at the end: items per slot = 32 / element_size if we follow the documentation https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html
                 let array_variable = Variable {
                     name: Some(name),
                     var_type: "array".to_string(),
                     key: None,
                     values: Some(values),
                     offset: 0,
-                    slot: first_item,
-                    size: total_size,
+                    slot: *current_slot,
+                    size: element_size * len,
                     path: path.to_string(),
                     raw_path: raw_path.to_string(),
                     length: Some(len),
                 };
 
+                *current_slot = slot;
                 array_variable
 
             } else {
