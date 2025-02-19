@@ -146,32 +146,26 @@ fn process_variable(
             
             // TODO: maybe for fixed array if there are a BIG number allocated, like 100000, we should just create an offset to update current slot, instead of mocking with internal values ?
             if let Some(len) = length.as_ref().and_then(|l| l.as_usize()) {
-                let mut slot = *current_slot;
-                let mut offset = 0;
 
-                let init_path = slot.to_string();
+                let init_path = *current_slot;
 
                 for i in 0..len {
-                    if offset + element_size > 32 {
-                        slot += 1;
-                        offset = 0;
-                    }
+                    let mut variable = process_variable(
+                        format!("element_{}", i),
+                        base_type,
+                        current_offset,
+                        current_slot,
+                        "",
+                        &format!("{}.element_{}", raw_path, i),
+                    );
 
-                    let mut computed_path = format!("Keccak256({}) + {}", init_path, i);
+                    let mut computed_path = format!("{} + {} (offset: {})", init_path, variable.slot - init_path, variable.offset);
+                    variable.path = computed_path;
 
                     values.insert(
                         format!("element_{}", i),
-                        process_variable(
-                            format!("element_{}", i),
-                            base_type,
-                            &mut offset,
-                            &mut slot,
-                            &computed_path,
-                            &format!("{}.element_{}", raw_path, i),
-                        ),
+                        variable
                     );
-
-                    offset += element_size;
                 }
 
                 // at the end: items per slot = 32 / element_size if we follow the documentation https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html
@@ -188,7 +182,6 @@ fn process_variable(
                     length: Some(len),
                 };
 
-                *current_slot = slot;
                 array_variable
 
             } else {

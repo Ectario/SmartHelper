@@ -7,6 +7,7 @@ contract City2 {
     mapping(uint8 => mapping(uint8 => address)) public home_map;
     bytes20[] public ids;
     bytes32[11] public things;
+    bytes4[5] public other_things;
     address public guest_address;
 
     /// Write data to the contract's ith storage slot
