@@ -136,6 +136,7 @@ fn process_variable(
         }
         // Handle arrays (both fixed and dynamic)
         TypeName::ArrayTypeName { base_type, length } => {
+            println!("var type = {:?}", base_type);
             let element_type = parse_solidity_type(&extract_type_name(base_type));
             let element_size = size_of_type(&element_type);
             
@@ -188,6 +189,7 @@ fn process_variable(
                 // Dynamic array: compute the starting slot for elements
                 let pointer_slot = *current_slot; // Pointer slot for the array
                 let element_start_slot_hash = keccak256(&(pointer_slot as u64).to_be_bytes());
+
                 // TODO: PROBLEME CAR CA DEVRAIT ETRE SUR 256 BITS ET PAS 64 LE INTERN_CURRENT_SLOT
                 let mut intern_current_slot = usize::from_be_bytes(element_start_slot_hash[..8].try_into().unwrap()) as usize;
                 let mut intern_current_offset = 0u64 as usize;
@@ -240,9 +242,16 @@ fn keccak256(input: &[u8]) -> [u8; 32] {
 pub fn extract_type_name(type_name: &TypeName) -> String {
     match type_name {
         TypeName::ElementaryTypeName { name } => name.clone(),
+        TypeName::ArrayTypeName { base_type, length: _ } => {
+            format!("{}[]", extract_type_name(base_type))
+        },
+        TypeName::Mapping { key_type, value_type } => {
+            format!("mapping({} => {})", extract_type_name(key_type), extract_type_name(value_type))
+        },
         _ => "unknown".to_string(),
     }
 }
+
 
 // used to debug
 #[allow(dead_code)]

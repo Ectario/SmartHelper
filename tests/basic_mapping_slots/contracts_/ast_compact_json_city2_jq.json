@@ -2,10 +2,10 @@
   "absolutePath": "/home/ectario/SmartHelper/tests/basic_mapping_slots/contracts_/City2.sol",
   "exportedSymbols": {
     "City2": [
-      35
+      39
     ]
   },
-  "id": 36,
+  "id": 40,
   "license": "UNLICENSED",
   "nodeType": "SourceUnit",
   "nodes": [
@@ -27,9 +27,9 @@
       "contractDependencies": [],
       "contractKind": "contract",
       "fullyImplemented": true,
-      "id": 35,
+      "id": 39,
       "linearizedBaseContracts": [
-        35
+        39
       ],
       "name": "City2",
       "nameLocation": "74:5:0",
@@ -43,7 +43,7 @@
           "name": "nb_user",
           "nameLocation": "101:7:0",
           "nodeType": "VariableDeclaration",
-          "scope": 35,
+          "scope": 39,
           "src": "86:22:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -71,7 +71,7 @@
           "name": "owner_address",
           "nameLocation": "129:13:0",
           "nodeType": "VariableDeclaration",
-          "scope": 35,
+          "scope": 39,
           "src": "114:28:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -100,7 +100,7 @@
           "name": "home_map",
           "nameLocation": "199:8:0",
           "nodeType": "VariableDeclaration",
-          "scope": 35,
+          "scope": 39,
           "src": "148:59:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -175,7 +175,7 @@
           "name": "ids",
           "nameLocation": "230:3:0",
           "nodeType": "VariableDeclaration",
-          "scope": 35,
+          "scope": 39,
           "src": "213:20:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -212,7 +212,7 @@
           "name": "things",
           "nameLocation": "258:6:0",
           "nodeType": "VariableDeclaration",
-          "scope": 35,
+          "scope": 39,
           "src": "239:25:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -265,7 +265,7 @@
           "name": "other_things",
           "nameLocation": "287:12:0",
           "nodeType": "VariableDeclaration",
-          "scope": 35,
+          "scope": 39,
           "src": "270:29:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -318,7 +318,7 @@
           "name": "guest_address",
           "nameLocation": "320:13:0",
           "nodeType": "VariableDeclaration",
-          "scope": 35,
+          "scope": 39,
           "src": "305:28:0",
           "stateVariable": true,
           "storageLocation": "default",
@@ -340,99 +340,145 @@
           "visibility": "public"
         },
         {
+          "constant": false,
+          "functionSelector": "cccf5f01",
+          "id": 28,
+          "mutability": "mutable",
+          "name": "ids_2_dimensionnal",
+          "nameLocation": "358:18:0",
+          "nodeType": "VariableDeclaration",
+          "scope": 39,
+          "src": "339:37:0",
+          "stateVariable": true,
+          "storageLocation": "default",
+          "typeDescriptions": {
+            "typeIdentifier": "t_array$_t_array$_t_bytes20_$dyn_storage_$dyn_storage",
+            "typeString": "bytes20[][]"
+          },
+          "typeName": {
+            "baseType": {
+              "baseType": {
+                "id": 25,
+                "name": "bytes20",
+                "nodeType": "ElementaryTypeName",
+                "src": "339:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes20",
+                  "typeString": "bytes20"
+                }
+              },
+              "id": 26,
+              "nodeType": "ArrayTypeName",
+              "src": "339:9:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_bytes20_$dyn_storage_ptr",
+                "typeString": "bytes20[]"
+              }
+            },
+            "id": 27,
+            "nodeType": "ArrayTypeName",
+            "src": "339:11:0",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_array$_t_bytes20_$dyn_storage_$dyn_storage_ptr",
+              "typeString": "bytes20[][]"
+            }
+          },
+          "visibility": "public"
+        },
+        {
           "body": {
-            "id": 33,
+            "id": 37,
             "nodeType": "Block",
-            "src": "441:64:0",
+            "src": "484:64:0",
             "statements": [
               {
                 "AST": {
-                  "nativeSrc": "460:39:0",
+                  "nativeSrc": "503:39:0",
                   "nodeType": "YulBlock",
-                  "src": "460:39:0",
+                  "src": "503:39:0",
                   "statements": [
                     {
                       "expression": {
                         "arguments": [
                           {
                             "name": "i",
-                            "nativeSrc": "481:1:0",
+                            "nativeSrc": "524:1:0",
                             "nodeType": "YulIdentifier",
-                            "src": "481:1:0"
+                            "src": "524:1:0"
                           },
                           {
                             "name": "data",
-                            "nativeSrc": "484:4:0",
+                            "nativeSrc": "527:4:0",
                             "nodeType": "YulIdentifier",
-                            "src": "484:4:0"
+                            "src": "527:4:0"
                           }
                         ],
                         "functionName": {
                           "name": "sstore",
-                          "nativeSrc": "474:6:0",
+                          "nativeSrc": "517:6:0",
                           "nodeType": "YulIdentifier",
-                          "src": "474:6:0"
+                          "src": "517:6:0"
                         },
-                        "nativeSrc": "474:15:0",
+                        "nativeSrc": "517:15:0",
                         "nodeType": "YulFunctionCall",
-                        "src": "474:15:0"
+                        "src": "517:15:0"
                       },
-                      "nativeSrc": "474:15:0",
+                      "nativeSrc": "517:15:0",
                       "nodeType": "YulExpressionStatement",
-                      "src": "474:15:0"
+                      "src": "517:15:0"
                     }
                   ]
                 },
                 "evmVersion": "cancun",
                 "externalReferences": [
                   {
-                    "declaration": 29,
+                    "declaration": 33,
                     "isOffset": false,
                     "isSlot": false,
-                    "src": "484:4:0",
+                    "src": "527:4:0",
                     "valueSize": 1
                   },
                   {
-                    "declaration": 27,
+                    "declaration": 31,
                     "isOffset": false,
                     "isSlot": false,
-                    "src": "481:1:0",
+                    "src": "524:1:0",
                     "valueSize": 1
                   }
                 ],
-                "id": 32,
+                "id": 36,
                 "nodeType": "InlineAssembly",
-                "src": "451:48:0"
+                "src": "494:48:0"
               }
             ]
           },
           "documentation": {
-            "id": 25,
+            "id": 29,
             "nodeType": "StructuredDocumentation",
-            "src": "340:49:0",
+            "src": "383:49:0",
             "text": "Write data to the contract's ith storage slot"
           },
           "functionSelector": "d5614ab7",
-          "id": 34,
+          "id": 38,
           "implemented": true,
           "kind": "function",
           "modifiers": [],
           "name": "write",
-          "nameLocation": "403:5:0",
+          "nameLocation": "446:5:0",
           "nodeType": "FunctionDefinition",
           "parameters": {
-            "id": 30,
+            "id": 34,
             "nodeType": "ParameterList",
             "parameters": [
               {
                 "constant": false,
-                "id": 27,
+                "id": 31,
                 "mutability": "mutable",
                 "name": "i",
-                "nameLocation": "417:1:0",
+                "nameLocation": "460:1:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 34,
-                "src": "409:9:0",
+                "scope": 38,
+                "src": "452:9:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -440,10 +486,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 26,
+                  "id": 30,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "409:7:0",
+                  "src": "452:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -453,13 +499,13 @@
               },
               {
                 "constant": false,
-                "id": 29,
+                "id": 33,
                 "mutability": "mutable",
                 "name": "data",
-                "nameLocation": "428:4:0",
+                "nameLocation": "471:4:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 34,
-                "src": "420:12:0",
+                "scope": 38,
+                "src": "463:12:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -467,10 +513,10 @@
                   "typeString": "bytes32"
                 },
                 "typeName": {
-                  "id": 28,
+                  "id": 32,
                   "name": "bytes32",
                   "nodeType": "ElementaryTypeName",
-                  "src": "420:7:0",
+                  "src": "463:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bytes32",
                     "typeString": "bytes32"
@@ -479,26 +525,26 @@
                 "visibility": "internal"
               }
             ],
-            "src": "408:25:0"
+            "src": "451:25:0"
           },
           "returnParameters": {
-            "id": 31,
+            "id": 35,
             "nodeType": "ParameterList",
             "parameters": [],
-            "src": "441:0:0"
+            "src": "484:0:0"
           },
-          "scope": 35,
-          "src": "394:111:0",
+          "scope": 39,
+          "src": "437:111:0",
           "stateMutability": "nonpayable",
           "virtual": false,
           "visibility": "public"
         }
       ],
-      "scope": 36,
-      "src": "65:442:0",
+      "scope": 40,
+      "src": "65:485:0",
       "usedErrors": [],
       "usedEvents": []
     }
   ],
-  "src": "39:469:0"
+  "src": "39:512:0"
 }

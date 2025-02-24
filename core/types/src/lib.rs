@@ -1,5 +1,6 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
+use regex::Regex;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Variable {
@@ -55,31 +56,46 @@ pub fn size_of_type(sol_type: &SolidityType) -> usize {
 }
 
 pub fn parse_solidity_type(type_name: &str) -> SolidityType {
+    let array_regex = Regex::new(r"(.+?)\[(\d*)\]$").unwrap();
+    println!("type_name: {:?}", type_name);
+    if let Some(captures) = array_regex.captures(type_name) {
+        let base_type = &captures[1];
+        let length = captures.get(2).map(|m| m.as_str());
+
+        let parsed_base_type = parse_solidity_type(base_type);
+
+        // fixed size array
+        return if let Some(len) = length {
+            if let Ok(len) = len.parse::<usize>() {
+                SolidityType::FixedArray(Box::new(parsed_base_type), len)
+            } else { // dynamic size array
+                SolidityType::DynamicArray(Box::new(parsed_base_type))
+            }
+        } else { // weird case ?
+            panic!("Weird case in parse_solidity_type with: {:?}", type_name)
+        };
+    }
+
     match type_name {
-        // Uint types (uint8, uint16, ..., uint256)
         t if t.starts_with("uint") => {
             let size = t[4..].parse::<usize>().unwrap_or(256);
             SolidityType::Uint(size)
         }
-        // Int types (int8, int16, ..., int256)
         t if t.starts_with("int") => {
             let size = t[3..].parse::<usize>().unwrap_or(256);
             SolidityType::Int(size)
         }
-        // Address type
         "address" => SolidityType::Address,
-        // Boolean type
         "bool" => SolidityType::Bool,
-        // Fixed-sized byte arrays (bytes1, bytes2, ..., bytes32)
-        t if t.starts_with("bytes") && t.len() > 5 => {
-            let size = t[5..].parse::<u16>().unwrap();
-            SolidityType::FixedBytes(size*8)
+        t if t.starts_with("bytes") => {
+            if let Ok(size) = t[5..].parse::<usize>() {
+                SolidityType::FixedBytes(size as u16)
+            } else {
+                SolidityType::DynamicBytes
+            }
         }
-        // Dynamic bytes
         "bytes" => SolidityType::DynamicBytes,
-        // String
         "string" => SolidityType::String,
-        // Default: Unknown type
         _ => panic!("Unknown Solidity type: {}", type_name),
     }
 }
